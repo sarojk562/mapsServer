@@ -1,0 +1,8 @@
+# some error in my machine settings file keep on adding to git files.
+.vscode/settings.json
+
+# ignoring node modules files
+node_modules
+
+# package-lock.json file
+package-lock.json

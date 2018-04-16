@@ -1,0 +1,28 @@
+{
+    "name": "translator",
+    "version": "0.0.1",
+    "description": "Translator to do my job easier",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "license": "Apache License",
+    "scripts": {
+        "start": "node index.js local"
+    },
+    "engines": {
+        "node": ">=4.3"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.28"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "compression": "^1.7.1",
+        "cookie-parser": "^1.4.3",
+        "cors": "^2.8.4",
+        "express": "^4.16.2",
+        "socket.io": "^2.1.0"
+    }
+}
