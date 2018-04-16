@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let baseRoutes = require('./routes/api');
 baseRoutes.includeRoutes(app);
 
+app.use(express.static(__dirname + '/dist')); 
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     let err = new Error('Not Found');
@@ -60,7 +62,11 @@ io.on('connection', socket => {
 function startTimer() {
     //Simulate stock data received by the server that needs 
     //to be pushed to clients
+    let locationCount = 0;
     timerId = setInterval(() => {
+        if(locationCount > 5) {
+            locationCount = 0;
+        }
         if (!sockets.size) {
             clearInterval(timerId);
             timerId = null;
@@ -69,15 +75,30 @@ function startTimer() {
 
         let locations = [
             {
-                lat: 17.383309,
-                lon: 78.4010528 // 17.383309!4d78.4010528 -- Golconda
-            },
-            {
                 lat: 17.4617971,
                 lon: 78.3671564 // Kondapur 17.4617971,78.3671564,15z
+            },{
+                lat: 17.4590263,
+                lon: 78.366114 // Kothaguda Cross Roads
+            },
+            {
+                lat: 17.4557793,
+                lon: 78.3776712 // Hitex kaman
+            },
+            {
+                lat: 17.4482929,
+                lon: 78.3914851 // Madhapur
+            },
+            {
+                lat: 17.4330599,
+                lon: 78.4060694 // Rainbow park
+            },{
+                lat: 17.383309,
+                lon: 78.4010528 // 17.383309!4d78.4010528 -- Golconda
             }
         ]
-        let location = locations[Math.floor(Math.random()*locations.length)];
+
+        let location = locations[locationCount];
         //See comment above about using a "room" to emit to an entire
         //group of sockets if appropriate for your scenario
         //This example tracks each socket and emits to each one
@@ -86,7 +107,9 @@ function startTimer() {
             s.emit('data', { data: location });
         }
 
-    }, 20000);
+        locationCount++;        
+
+    }, 10000); // Pushing the location from server every 10 seconds
 }
 
 module.exports = app;
