@@ -107,7 +107,7 @@ function startTimer() {
             s.emit('data', { data: location });
         }
 
-        locationCount++;        
+        locationCount = locationCount + 1;        
 
     }, 10000); // Pushing the location from server every 10 seconds
 }

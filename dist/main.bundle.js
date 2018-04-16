@@ -27,7 +27,7 @@ module.exports = ""
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <h2>Location: {{this.Location.lat}}, {{this.Location.lon}}</h2>\n\n  <br>\n\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"text-center\">\n        <h3>\n          <div #gmap style=\"width:100%;height:400px\"></div>\n        </h3>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\n\n  <h2>Location: {{this.latitude}}, {{this.longitude}}</h2>\n\n  <br>\n\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"text-center\">\n        <h3>\n          <div #gmap style=\"width:100%;height:400px\"></div>\n        </h3>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -172,7 +172,7 @@ var DataService = /** @class */ (function () {
     }
     DataService.prototype.getLocations = function () {
         var _this = this;
-        this.socket = __WEBPACK_IMPORTED_MODULE_2_socket_io_client__(this.local_url);
+        this.socket = __WEBPACK_IMPORTED_MODULE_2_socket_io_client__(this.server_url);
         this.socket.on('data', function (res) {
             _this.observer.next(res.data);
         });
